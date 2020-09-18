@@ -96,22 +96,31 @@
   </div>
 
 <script>
-  /* Pseudo code */
-  
-  // choose DOM element with class='inbox'
-  // spread all children of inbox into an empty object with an id key
-  // add matching id's to each input element under their parent inbox (use .inbox:nth-child selector)
-  // add eventListener for 'click' on all input elements
-  // add eventListener for 'keydown' for the 'Shift' key
-  // define a boolean variable for isStrikeThrough
-  // write a function 
-  //   - to calculate the total children / elements under inbox / elements inside object
-  //   - to check the id of the clicked input element
-  //   - to check if the shift key is pressed
-  //   - to check the id of the second clicked input element
-  //   - calculate the elements in between those two id's 
-  //   - check if the ones in between are already strike-through
-  //   - determine the ones in between as strike-through if not already or otherway around
+  //select all the elements that can be checked
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+  let lastChecked;
+
+  function handleCheck(e) {
+    //check if the shift key is down
+    //check that they are checking instead of unchecking
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween =!inBetween;
+        };
+        
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    };
+    lastChecked = this;
+  };
+
+  //go through each 
+  checkboxes.forEach( checkbox => checkbox.addEventListener('click', handleCheck));
 
 </script>
 </body>
