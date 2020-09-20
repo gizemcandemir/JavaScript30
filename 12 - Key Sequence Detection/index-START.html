@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <title>Key Detection</title>
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <p>Try to guess my secret code by typing :)</p>
 <script>
   const pressed = [];
   const secretCode = 'gizem';
@@ -13,9 +15,21 @@
     pressed.push(e.key);
     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
     if(pressed.join('').includes(secretCode)) {
-      console.log("found it!");
+      document.body.style.backgroundColor = "#bada55";
+      document.querySelector('p').innerText = "Found it! 👏"
     };
   });
 </script>
 </body>
+<style>
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+  }
+  p {
+    align-self: center;
+  }
+</style>
 </html>
