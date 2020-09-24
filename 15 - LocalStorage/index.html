@@ -98,9 +98,26 @@
     localStorage.setItem('items', JSON.stringify(items));
   }
 
+  function uncheckAll(plates = [], platesList) {
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `
+      <li>
+        <input type="checkbox" data-index=${i} id="item${i}" ${plate.done = ''} />
+        <label for="item${i}">${plate.text}</label>
+      </li>
+    `;
+  }).join('');
+  }
+
+  function handleUncheckAll() {
+    uncheckAll(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items));
+  }
+
   addItems.addEventListener('submit', addItem);
   itemsList.addEventListener('click', toggleDone);
   checkAllButton.addEventListener('click', handleCheckAll);
+  uncheckAllButton.addEventListener('click', handleUncheckAll);
   deleteAllButton.addEventListener('click', deleteAll);
 
   populateList(items, itemsList);
