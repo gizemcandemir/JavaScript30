@@ -39,9 +39,7 @@
   const text = hero.querySelector('h1');
 
   function shadow(e) {
-    console.log(e.offsetX, e.offsetY);
-    x = e.offsetX;
-    y = e.offsetY;
+    let { offsetX: x, offsetY: y } = e;
   
     text.style.textShadow = `
       ${x}px ${y}px rgba(255, 255, 0, 0.7)
